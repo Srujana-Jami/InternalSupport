@@ -1,0 +1,161 @@
+﻿@page
+@model Internal_Support.Pages.SupportTicket.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+    <p>
+        <a asp-page="Create">Create New</a> |
+        <a asp-page="SupportAnalysts">SupportAnalysts</a> |
+        <a asp-page="LookUps">LookUps</a>
+    </p>
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SupportTickets[0].Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupportTickets[0].Subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupportTickets[0].CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupportTickets[0].UpdatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupportTickets[0].Status)
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupportTickets[0].Assigned)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.SupportTickets)
+        {
+            if (item.Status == "Pending" || item.Status == "InProgress" || item.Status == null)
+            {
+
+             <tr>
+                <td>
+                 @Html.DisplayFor(modelItem => item.Id)
+               </td>
+
+               <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+                </td>
+
+                <td>
+                   @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+               <td>
+                  @Html.DisplayFor(modelItem => item.UpdatedDate)
+                </td>
+                <td>
+                  @Html.DisplayFor(modelItem => item.Status)
+                 </td>
+                <td>
+                 @Html.DisplayFor(modelItem => item.Assigned)
+                   </td>
+
+               <td>
+                   <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>|
+                   <a asp-page="./Details" asp-route-id="@item.Id">Details</a>|
+                   <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+               </td>
+              </tr>
+             }
+          }
+
+
+
+    </tbody>
+</table>
+<br />
+<br />
+<h5>Closed Tickets</h5>
+<br/>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SupportTickets[0].Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupportTickets[0].Subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupportTickets[0].CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupportTickets[0].UpdatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupportTickets[0].Assigned)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sName in Model.SupportTickets)
+        {
+            if (sName.Status == "Closed")
+            {
+              <tr>
+                 <td>
+                   @Html.DisplayFor(Model => sName.Id)
+                  </td>
+                 <td>
+                    @Html.DisplayFor(Model => sName.Subject)
+                 </td>
+
+                 <td>
+                    @Html.DisplayFor(Model => sName.CreatedDate)
+                 </td>
+
+                 <td>
+                    
+                   @Html.DisplayFor(Model => sName.UpdatedDate)
+                </td>
+                <td>
+                   @Html.DisplayFor(Model => sName.Assigned)
+                 </td>
+                <td>
+                  <a asp-page="./Edit" asp-route-id="@sName.Id">Edit</a>|
+                  <a asp-page="./Details" asp-route-id="@sName.Id">Details</a>|
+                  <a asp-page="./Delete" asp-route-id="@sName.Id">Delete</a>
+                 </td>
+              </tr>
+             }
+               
+        }
+    </tbody>
+</table>
+
+
+
+@{ var prevDisabled = !Model.SupportTickets.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.SupportTickets.HasNextPage ? "disabled" : ""; }
+
+
+
+
+<a asp-page="./Index"
+   asp-route-pageIndex="@(Model.SupportTickets.PageIndex - 1)"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+
+
+
+<a asp-page="./Index"
+   asp-route-pageIndex="@(Model.SupportTickets.PageIndex + 1)"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>

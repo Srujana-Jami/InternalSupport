@@ -1,0 +1,51 @@
+﻿@page
+@model Internal_Support.Pages.SupportTicket.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>Submit a request</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form enctype="multipart/form-data" method="post">
+            <input hidden asp-for="SupportTickets.pathFile" />
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SupportTickets.YourMail" class="control-label"></label>
+                <input asp-for="SupportTickets.YourMail" class="form-control" />
+                <span asp-validation-for="SupportTickets.YourMail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SupportTickets.Subject" class="control-label"></label>
+                <input asp-for="SupportTickets.Subject" class="form-control" />
+                <span asp-validation-for="SupportTickets.Subject" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SupportTickets.Description" class="control-label"></label>
+                <textarea class="form-control" rows="5" cols="50" asp-for="SupportTickets.Description"></textarea>
+                <span asp-validation-for="SupportTickets.Description" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label class="control-label" asp-for="filee">Attachments(Optional)</label><br />
+                <input asp-for="filee" type="file" multiple="multiple" class="dz-hidden-input" name="filee" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Response">Back to List</a>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

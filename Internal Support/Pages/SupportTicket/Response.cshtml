@@ -1,0 +1,15 @@
+﻿@page
+@model Internal_Support.Pages.SupportTicket.ResponseModel
+@{
+    ViewData["Title"] = "Response";
+}
+
+    <h4>Your response has been successfully submitted, our Support Team will contact you shortly</h4>
+
+<div>
+    <a asp-page="Create">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

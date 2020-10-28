@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Internal_Support</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200917152141_Status.cs" />
+    <Compile Remove="Migrations\20200917152141_Status.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\files\" />
+  </ItemGroup>
+
+</Project>
